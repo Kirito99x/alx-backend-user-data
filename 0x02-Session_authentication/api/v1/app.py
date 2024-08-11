@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""Route module for the API.
-"""
+"""Route module for API"""
 import os
 from os import getenv
 from flask import Flask, jsonify, abort, request
@@ -40,22 +39,19 @@ def not_found(error) -> str:
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """Unauthorized handler.
-    """
+    """Unauthorized handler"""
     return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
 def forbidden(error) -> str:
-    """Forbidden handler.
-    """
+    """Forbidden handler"""
     return jsonify({"error": "Forbidden"}), 403
 
 
 @app.before_request
 def authenticate_user():
-    """Authenticates a user before processing a request.
-    """
+    """Authenticates a user before processing a request"""
     if auth:
         excluded_paths = [
             "/api/v1/status/",
